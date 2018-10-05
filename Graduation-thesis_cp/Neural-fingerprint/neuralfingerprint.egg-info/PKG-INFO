@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: neuralfingerprint
+Version: 1.0.0
+Summary: Computes differentiable fingerprints of molecular graphs.
+Home-page: https://github.com/HIPS/neural-fingerprint
+Author: David Duvenaud and Dougal Maclaurin
+Author-email: dduvenaud@seas.harvard.edu, maclaurin@physics.harvard.edu
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Keywords: Chemistry,Molecular Fingerprints,Morgan fingerprints,machine learning,Circular fingerprints,neural networks,Python,Numpy,Scipy
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
