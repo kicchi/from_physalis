@@ -1,0 +1,6 @@
+
+**10split.py
+ファイルを入力すると、そのファイルがある場所に~bucketsというフォルダを生成して
+その中に10foldした.gspを生成する。
+$ python 10split.py ../original/cpdb/cpdb.gsp
+

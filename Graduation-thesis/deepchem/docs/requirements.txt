@@ -1,0 +1,10 @@
+sphinx
+scikit-learn
+keras
+theano ==0.7.2
+rdkit
+pandas
+numpy
+scipy
+joblib
+h5py

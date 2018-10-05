@@ -1,0 +1,17 @@
+newactive 2383
+newinac 2383
+new 4766
+Active = 2383
+InActive = 26058
+Unspecified  =  208
+sum = 28649
+ 
+atomdata
+ave = 26.876734
+max = 229
+min = 3
+ 
+bonddata
+ave = 29.028899
+max = 236
+min = 2
