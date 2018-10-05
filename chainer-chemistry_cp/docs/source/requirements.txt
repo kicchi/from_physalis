@@ -1,5 +1,0 @@
-chainer
-scipy
-scikit-learn
-pandas
-tqdm
