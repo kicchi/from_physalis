@@ -1,5 +1,5 @@
-import numpy
-import cupy as np
+import numpy as np
+#import cupy as np
 from rdkit.Chem import MolFromSmiles
 from .features import atom_features_from_ecfp, atom_features_from_fcfp, bond_features
 from chainer import Variable
@@ -36,7 +36,7 @@ class MolGraph(object):
 
     def feature_array(self, ntype):
         assert ntype in self.nodes
-        return numpy.array([node.features for node in self.nodes[ntype]])
+        return np.array([node.features for node in self.nodes[ntype]])
 
     def rdkit_ix_array(self):
         return np.array([node.rdkit_ix for node in self.nodes['atom']])

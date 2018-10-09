@@ -1,6 +1,6 @@
 #coding: utf-8
-import numpy 
-import cupy as np #GPUを使うためのnumpy
+import numpy as np
+#import cupy as np #GPUを使うためのnumpy
 import chainer 
 from chainer import cuda, Function, Variable, optimizers, initializers
 from chainer import Link, Chain
@@ -55,7 +55,7 @@ def weights_name(layer, degree):
     return "layer_" + str(layer) + "_degree_" + str(degree) + "_filter"
 
 def bool_to_float32(features):
-	return cuda.to_gpu(numpy.array(features).astype(numpy.float32))
+	return cuda.to_gpu(np.array(features).astype(np.float32))
 
 def bool_to_float32_one_dim(features):
 	vec = np.empty((0,1), dtype=np.float32)

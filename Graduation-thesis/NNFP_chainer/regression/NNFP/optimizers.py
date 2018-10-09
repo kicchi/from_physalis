@@ -39,7 +39,7 @@ def adam(grad, x, callback=None, num_iters=100,
         vhat = v / (1 - b2**(i + 1))
         x -= step_size*mhat/(np.sqrt(vhat) + eps)
         #print x.shape
-    print("adam return ",  len(x))
+    #print("adam return ",  len(x))
     return x
 
 def bfgs(obj_and_grad, x, callback=None, num_iters=100):

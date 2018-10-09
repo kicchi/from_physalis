@@ -1,5 +1,5 @@
-import numpy 
-import cupy as np 
+import numpy as np 
+#import cupy as np 
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from .util import one_of_k_encoding, one_of_k_encoding_unk

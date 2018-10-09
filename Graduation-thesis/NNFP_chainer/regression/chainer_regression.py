@@ -1,8 +1,9 @@
 #coding: utf-8
 import math
+import time
 import numpy as np
 import numpy.random as npr
-#import cupy as np #GPUを使うためのnumpy
+#import cupy as cp #GPUを使うためのnumpy
 import chainer 
 from chainer import cuda, Function, Variable, optimizers
 from chainer import Link, Chain
@@ -19,9 +20,9 @@ from NNFP import Finger_print
 task_params = {'target_name' : 'measured log solubility in mols per litre',
 				'data_file'  : 'delaney.csv'}
 
-N_train = 70
-N_val   = 1
-N_test  = 10
+N_train = 700
+N_val   = 100
+N_test  = 300
 
 
 model_params = dict(fp_length = 50,      
@@ -44,7 +45,9 @@ class Main(Chain):
 		)
 	
 	def __call__(self, x, y):
+		t = time.time()
 		y = Variable(np.array(y, dtype=np.float32))
+		#print("variable : ", time.time() - t)
 		pred = self.prediction(x)
 		return F.mean_squared_error(pred, y)
 
@@ -69,24 +72,29 @@ def train_nn(model, train_smiles, train_raw_targets, seed=0,
 	optimizer.setup(model)
 	optimizer.add_hook(chainer.optimizer.WeightDecay(0.0001))	
 	
-	num_epoch = 100
+	num_epoch = 1000
 	num_data = len(train_smiles)
-	batch_size = 50
+	batch_size = 64
 	x = train_smiles
 	y = train_targets
 	sff_idx = npr.permutation(num_data)
+	#TIME = time.time()
 	for epoch in range(num_epoch):
+		epoch_time = time.time()
 		for idx in range(0,num_data, batch_size):
 			batched_x = x[sff_idx[idx:idx+batch_size
 				if idx + batch_size < num_data else num_data]]
 			batched_y = y[sff_idx[idx:idx+batch_size
 				if idx + batch_size < num_data else num_data]]
+			#update_time	 = time.time()
 			model.zerograds()
 			loss = model(batched_x, batched_y)
 			loss.backward()
 			optimizer.update()
+			#print("UPDATE TIME : ",  time.time() - update_time)
 		#print "epoch ", epoch, "loss", loss._data[0]
 		if epoch % 10 == 0:
+			#print_time = time.time()
 			train_preds = model.mse(train_smiles, train_raw_targets, undo_norm)
 			cur_loss = loss._data[0]
 			training_curve.append(cur_loss)
@@ -95,6 +103,8 @@ def train_nn(model, train_smiles, train_raw_targets, seed=0,
 			if validation_smiles is not None:
 				validation_preds = model.mse(validation_smiles, validation_raw_targets, undo_norm)
 				print("Validation RMSE", epoch, ":", math.sqrt((validation_preds._data[0])))
+			#print("PRINT TIME : ",  time.time() - print_time)
+		print("1 EPOCH TIME : ", time.time() - epoch_time)
 		#print loss
 
 		

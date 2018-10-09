@@ -1,6 +1,6 @@
 #coding: utf-8
-import cupy as np #GPUを使うためのnumpy
-#import numpy as np
+#import cupy as np #GPUを使うためのnumpy
+import numpy as np
 import chainer 
 from chainer import Link, Chain, Variable
 import chainer.functions as F

@@ -30,13 +30,13 @@ def array_rep_from_smiles(smiles):
                 'rdkit_ix'      : molgraph.rdkit_ix_array()}  # For plotting only.
 
     for degree in degrees:
-        print ((molgraph))
-        import pdb;pdb.set_trace()
+        #print ((molgraph))
+        #import pdb;pdb.set_trace()
         arrayrep[('atom_neighbors', degree)] = \
             np.array(molgraph.neighbor_list(('atom', degree), 'atom'), dtype=int)
         arrayrep[('bond_neighbors', degree)] = \
             np.array(molgraph.neighbor_list(('atom', degree), 'bond'), dtype=int)
-    print (arrayrep[('atom_neighbors', 1)])
+    #print (arrayrep[('atom_neighbors', 1)])
     return arrayrep
 
 
@@ -136,9 +136,9 @@ class FP(Chain):
 			num_layers = self.model_params['fp_depth']
 			for layer in range(num_layers):
 				write_to_fingerprint(self, atom_features, layer)
-				print (len(atom_features))
-				print (len(bond_features))
-				import pdb;pdb.set_trace()
+				#print (len(atom_features))
+				#print (len(bond_features))
+				#import pdb;pdb.set_trace()
 				atom_features = update_layer(self, layer, atom_features, bond_features, array_rep, normalize=False)
 				atom_features = atom_features._data[0]
 

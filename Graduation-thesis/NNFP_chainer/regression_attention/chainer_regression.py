@@ -1,8 +1,8 @@
 #coding: utf-8
 import math
-#import numpy as np
+import numpy as np
 import numpy.random as npr
-import cupy as np #GPUを使うためのnumpy
+#import cupy as np #GPUを使うためのnumpy
 import chainer 
 from chainer import cuda, Function, Variable, optimizers
 from chainer import Link, Chain
@@ -133,9 +133,9 @@ def main():
 		optimizer = optimizers.Adam()
 		optimizer.setup(NNFP)
 
-		gpu_device = 0
-		cuda.get_device(gpu_device).use()
-		NNFP.to_gpu(gpu_device)
+		#gpu_device = 0
+		#cuda.get_device(gpu_device).use()
+		#NNFP.to_gpu(gpu_device)
 		'''Learn'''
 		trained_NNFP, conv_training_curve, undo_norm = \
 			train_nn(NNFP, 

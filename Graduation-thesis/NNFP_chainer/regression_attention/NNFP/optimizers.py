@@ -1,5 +1,5 @@
-#import numpy as np
-import cupy as np
+import numpy as np
+#import cupy as np
 from scipy.optimize import minimize
 
 def sgd(grad, x, callback=None, num_iters=200, step_size=0.1, mass=0.9):
